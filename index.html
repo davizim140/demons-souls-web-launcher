@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0c0d10">
+<meta name="description" content="Diagnóstico de compatibilidade do navegador para um futuro projeto de emulação PS3.">
+<title>Demon's Souls — Web Launcher</title>
+<style>
+:root{color-scheme:dark;--bg:#0c0d10;--panel:#15171c;--panel2:#1c1f25;--line:#30343d;--text:#f2f0eb;--muted:#a3a7b0;--gold:#d4b06a;--red:#b84c4c;--green:#83c99b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 50% -20%,#342b20 0,transparent 48%),var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}a{color:var(--gold)}.wrap{max-width:1080px;margin:auto;padding:28px 20px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:16px;border-bottom:1px solid var(--line);padding-bottom:18px}.brand{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}.tag{font-size:12px;border:1px solid #6b5632;color:var(--gold);padding:5px 9px;border-radius:999px}.hero{padding:56px 0 32px;max-width:760px}.eyebrow{color:var(--gold);font-size:12px;letter-spacing:.18em;text-transform:uppercase}.hero h1{font-size:clamp(36px,7vw,70px);line-height:1.02;letter-spacing:-.045em;margin:14px 0}.hero p{color:var(--muted);font-size:18px;max-width:680px}.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}.btn{cursor:pointer;border:1px solid var(--gold);background:var(--gold);color:#17130b;padding:12px 17px;border-radius:8px;font-weight:750;font-size:14px}.btn.secondary{background:transparent;color:var(--text);border-color:var(--line)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.card{background:linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:14px;padding:20px;min-width:0}.card h2{font-size:17px;margin:0 0 8px}.card p{margin:0;color:var(--muted);font-size:14px}.status{display:flex;align-items:center;gap:8px;margin:12px 0 6px;font-weight:700}.dot{width:9px;height:9px;border-radius:50%;background:#888}.ok .dot{background:var(--green)}.warn .dot{background:var(--gold)}.bad .dot{background:var(--red)}.section-title{font-size:22px;margin:34px 0 14px}.filebox{margin-top:14px;border:1px dashed #555b67;padding:16px;border-radius:10px}.filebox label{display:block;font-weight:700;margin-bottom:6px}.filebox input{display:block;width:100%;margin:8px 0;color:var(--muted)}.filelist{font-size:13px;color:var(--muted);overflow-wrap:anywhere}.notice{margin-top:20px;border-left:3px solid var(--gold);padding:12px 15px;background:#201c15;color:#e5d8bd;font-size:14px}.footer{border-top:1px solid var(--line);margin-top:34px;padding-top:18px;color:var(--muted);font-size:13px}.small{font-size:12px!important}.full{grid-column:1/-1}.pill{display:inline-block;border:1px solid var(--line);padding:3px 8px;border-radius:999px;font-size:12px;color:var(--muted);margin:4px 4px 0 0}
+@media(max-width:680px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.hero{padding-top:38px}.top{align-items:flex-start}.wrap{padding:20px 14px 42px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><div class="brand">Projeto experimental · PS3</div><span class="tag">Fase 01 · Diagnóstico</span></header>
+<main>
+<section class="hero">
+<div class="eyebrow">Beyond the fog</div>
+<h1>Demon's Souls<br>Web Launcher</h1>
+<p>Uma página inicial para investigar se este navegador oferece recursos básicos para um projeto futuro de emulação de PlayStation 3. Primeiro, vamos medir o ambiente real — sem fingir que o jogo já está rodando.</p>
+<div class="actions"><button class="btn" id="runTests">Executar diagnóstico</button><a class="btn secondary" href="https://github.com/davizim140/demons-souls-web-launcher" target="_blank" rel="noreferrer">Ver código no GitHub ↗</a></div>
+</section>
+<h2 class="section-title">Diagnóstico do navegador</h2>
+<section class="grid" id="results" aria-live="polite">
+<article class="card" id="webgpu"><h2>WebGPU</h2><div class="status"><span class="dot"></span><span>Aguardando teste</span></div><p>API gráfica moderna; suporte não significa que um emulador PS3 funcionará.</p></article>
+<article class="card" id="wasm"><h2>WebAssembly</h2><div class="status"><span class="dot"></span><span>Aguardando teste</span></div><p>Verifica se o navegador reconhece WebAssembly.</p></article>
+<article class="card" id="memory"><h2>Memória reportada</h2><div class="status"><span class="dot"></span><span>Aguardando teste</span></div><p>Estimativa exposta pelo navegador, quando disponível; não é uma medição completa do computador.</p></article>
+<article class="card" id="threads"><h2>Threads e isolamento</h2><div class="status"><span class="dot"></span><span>Aguardando teste</span></div><p>Verifica recursos que podem ser úteis para código WebAssembly multithread.</p></article>
+<article class="card full" id="platform"><h2>Ambiente</h2><div class="status"><span class="dot"></span><span>Aguardando teste</span></div><p>Informações gerais do navegador e do sistema reportado.</p></article>
+</section>
+<h2 class="section-title">Verificação local de arquivos</h2>
+<article class="card">
+<h2>Selecionar arquivos que você já possui</h2>
+<p>Os arquivos selecionados são verificados apenas no navegador. Esta página não envia nem armazena os arquivos. A seleção não inicia o jogo e não confirma que os arquivos são válidos.</p>
+<div class="filebox"><label for="gameFile">Arquivo de jogo / imagem de disco (selecione seu arquivo legalmente obtido)</label><input id="gameFile" type="file" accept=".iso,.bin,.cue,.pkg,.elf,.self,.rap,.edat"><div id="gameInfo" class="filelist">Nenhum arquivo selecionado.</div></div>
+<div class="filebox"><label for="firmwareFile">Firmware PS3 (se você possui uma cópia própria)</label><input id="firmwareFile" type="file" accept=".pup"><div id="firmwareInfo" class="filelist">Nenhum arquivo selecionado.</div></div>
+<div class="notice"><strong>Importante:</strong> não há emulador de PS3 integrado nesta versão. Arquivos de firmware/jogo, por si só, não permitem executar Demon’s Souls. Ainda será necessário integrar um emulador compatível com navegador e comprovar a compatibilidade do título.</div>
+</article>
+<h2 class="section-title">O que este protótipo faz — e não faz</h2>
+<section class="grid">
+<article class="card"><h2>Incluído nesta fase</h2><p><span class="pill">HTML responsivo</span><span class="pill">Teste WebGPU</span><span class="pill">Teste WebAssembly</span><span class="pill">Seleção local</span><span class="pill">GitHub Pages</span></p></article>
+<article class="card"><h2>Ainda não incluído</h2><p><span class="pill">Emulador PS3</span><span class="pill">Boot de firmware</span><span class="pill">Execução do jogo</span><span class="pill">Compatibilidade validada</span></p></article>
+</section>
+</main>
+<footer class="footer">Projeto comunitário experimental, sem afiliação com Sony ou FromSoftware. “Demon’s Souls” é uma marca de seus respectivos titulares. Esta página não inclui jogo, firmware, BIOS ou conteúdo protegido.</footer>
+</div>
+<script>
+const setCard=(id,kind,title,detail)=>{const el=document.getElementById(id);el.classList.remove('ok','warn','bad');el.classList.add(kind);el.querySelector('.status span:last-child').textContent=title;el.querySelector('p').textContent=detail};
+async function runTests(){
+setCard('webgpu','warn','Testando…','Consultando a API WebGPU.');
+if('gpu' in navigator){try{const adapter=await navigator.gpu.requestAdapter();if(adapter){let info='Adaptador WebGPU disponível. Isso não garante desempenho suficiente nem compatibilidade com emulação PS3.';try{const a=await adapter.requestAdapterInfo?.();if(a){const name=[a.vendor,a.architecture,a.device].filter(Boolean).join(' · ');if(name)info='Adaptador informado: '+name+'. '+info}}catch{}setCard('webgpu','ok','API disponível',info)}else setCard('webgpu','warn','Sem adaptador disponível','O navegador reconhece WebGPU, mas não conseguiu obter um adaptador gráfico. Verifique o navegador, os drivers e a aceleração gráfica.')}catch(e){setCard('webgpu','bad','Falha ao consultar WebGPU','O navegador bloqueou ou não conseguiu inicializar WebGPU: '+e.message)}}else setCard('webgpu','bad','Não suportado neste contexto','navigator.gpu não está disponível. Tente um navegador atualizado em HTTPS; suporte varia conforme dispositivo e driver.');
+try{const m=await WebAssembly.instantiate(new Uint8Array([0,97,115,109,1,0,0,0]));setCard('wasm','ok','WebAssembly disponível','O navegador compilou um módulo mínimo com sucesso. Isso não confirma que um emulador completo esteja disponível.')}catch(e){setCard('wasm','bad','Teste falhou',e.message)}
+const mem=navigator.deviceMemory;if(typeof mem==='number')setCard('memory','warn',mem+' GB (estimativa reportada)','É um valor aproximado informado pelo navegador, não a memória livre ou total necessariamente.');else setCard('memory','warn','Não informado','Este navegador não expõe navigator.deviceMemory. Não é possível concluir a RAM instalada por este teste.');
+const isolated=window.crossOriginIsolated;const sab=typeof SharedArrayBuffer!=='undefined';setCard('threads',isolated&&sab?'ok':'warn',isolated&&sab?'Isolamento e SharedArrayBuffer disponíveis':'Recursos de threads incompletos','crossOriginIsolated: '+isolated+'; SharedArrayBuffer: '+sab+'. Para alguns cenários multithread, o site precisa de cabeçalhos COOP/COEP.');
+const ua=navigator.userAgent||'Não informado';setCard('platform','ok','Informações coletadas','Sistema reportado: '+(navigator.userAgentData?.platform||navigator.platform||'não informado')+'. Idioma: '+navigator.language+'. Online: '+navigator.onLine+'. User-Agent: '+ua);
+}
+document.getElementById('runTests').addEventListener('click',runTests);
+function fileInfo(inputId,outId){const input=document.getElementById(inputId),out=document.getElementById(outId);input.addEventListener('change',()=>{const f=input.files&&input.files[0];if(!f){out.textContent='Nenhum arquivo selecionado.';return}out.textContent='Nome: '+f.name+' · Tamanho: '+(f.size.toLocaleString('pt-BR'))+' bytes · Tipo informado: '+(f.type||'não informado')+'. Arquivo apenas selecionado; conteúdo não validado nem enviado.'})}
+fileInfo('gameFile','gameInfo');fileInfo('firmwareFile','firmwareInfo');runTests();
+</script>
+</body>
+</html>
